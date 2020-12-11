@@ -18,7 +18,15 @@ public class Movements : MonoBehaviour
         {
             newPose -= new Vector3(0f, 0.1f, 0f);
         }
-        // TODO: Add left and right movements.
+        if (Input.GetKey("left") || Input.GetKey("a"))
+        {
+            newPose -= new Vector3(0.1f, 0f, 0f);
+        }
+        if (Input.GetKey("right") || Input.GetKey("d"))
+        {
+            newPose += new Vector3(0.1f, 0f, 0f);
+        }
+
 
         Vector3 screenPoint = Camera.main.WorldToViewportPoint(newPose);
         bool onScreen = screenPoint.z > 0 && screenPoint.x > 0 && screenPoint.x < 1 && screenPoint.y > 0 && screenPoint.y < 1;
