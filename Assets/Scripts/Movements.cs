@@ -12,7 +12,13 @@ public class Movements : MonoBehaviour
         Right
     }
 
-    private float _displacement = 0.1f;
+    private float _moveSpeed = 0.1f;
+    private Collider _collider;
+
+    private void Start()
+    {
+        _collider = GetComponent<Collider>();
+    }
 
     // Update is called once per frame
     private void Update()
@@ -44,44 +50,47 @@ public class Movements : MonoBehaviour
         Vector3 translation = Vector3.zero;
         Vector3 screenPoint;
 
+        Bounds bounds = _collider.bounds;
+
         foreach (EMovement move in movements)
         {
             switch (move)
             {
                 case (EMovement.Right):
-                    screenPoint = Camera.main.WorldToViewportPoint(transform.position + new Vector3(_displacement, 0f, 0f));
+                    screenPoint = Camera.main.WorldToViewportPoint(bounds.max + new Vector3(_moveSpeed, 0f, 0f));
                     if (screenPoint.x < 1)
                     {
-                        translation.x += _displacement;
+                        translation.x += _moveSpeed;
                     }
                     break;
 
                 case (EMovement.Left):
-                    screenPoint = Camera.main.WorldToViewportPoint(transform.position - new Vector3(_displacement, 0f, 0f));
+                    screenPoint = Camera.main.WorldToViewportPoint(bounds.min - new Vector3(_moveSpeed, 0f, 0f));
                     if (screenPoint.x > 0)
                     {
-                        translation.x -= _displacement;
+                        translation.x -= _moveSpeed;
                     }
                     break;
 
                 case (EMovement.Up):
-                    screenPoint = Camera.main.WorldToViewportPoint(transform.position + new Vector3(0f, _displacement, 0f));
+                    screenPoint = Camera.main.WorldToViewportPoint(bounds.max + new Vector3(0f, _moveSpeed, 0f));
                     if (screenPoint.y < 1)
                     {
-                        translation.y += _displacement;
+                        translation.y += _moveSpeed;
                     }
                     break;
 
                 case (EMovement.Down):
-                    screenPoint = Camera.main.WorldToViewportPoint(transform.position - new Vector3(0f, _displacement, 0f));
+                    screenPoint = Camera.main.WorldToViewportPoint(bounds.min - new Vector3(0f, _moveSpeed, 0f));
                     if (screenPoint.y > 0)
                     {
-                        translation.y -= _displacement;
+                        translation.y -= _moveSpeed;
                     }
                     break;
             }
         }
-        translation = translation.normalized * _displacement;
+
+        translation = translation.normalized * _moveSpeed;
         return transform.position + translation;
     }
 }
