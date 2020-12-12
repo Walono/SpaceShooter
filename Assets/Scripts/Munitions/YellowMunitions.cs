@@ -2,26 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class YellowMunitions : MonoBehaviour
+public class YellowMunitions : Munitions
 {
-    [SerializeField]
-    private float _munSpeed = 0.7f;
-
-    [SerializeField]
-    private float _maxRange = 3f;
-
-    private Vector3 _initialPose;
-
     private void Awake()
     {
-        _initialPose = transform.position;
+        InitialPose = transform.position;
     }
 
     private void Update()
     {
-        transform.position += new Vector3(0f, _munSpeed, 0f);
+        transform.position += new Vector3(0f, MunSpeed, 0f);
 
-        if (transform.position.y - _initialPose.y >= _maxRange)
+        if (transform.position.y - InitialPose.y >= MaxRange)
         {
             Destroy(gameObject);
         }

@@ -45,6 +45,6 @@ public class MunitionManagement : MonoBehaviour
     private void SetYellowMun()
     {
         _currentMunType = YellowMunPrefab;
-        _shootCooldown = 0.3f;
+        _shootCooldown = 0.2f;
     }
 }
