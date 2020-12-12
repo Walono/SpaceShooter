@@ -4,36 +4,84 @@ using UnityEngine;
 
 public class Movements : MonoBehaviour
 {
-    // Update is called once per frame
-    void Update()
+    private enum EMovement
     {
+        Up,
+        Down,
+        Left,
+        Right
+    }
 
-        Vector3 newPose = transform.position;
+    private float _displacement = 0.1f;
+
+    // Update is called once per frame
+    private void Update()
+    {
+        List<EMovement> movements = new List<EMovement>();
 
         if (Input.GetKey("up") || Input.GetKey("w"))
         {
-            newPose += new Vector3(0f, 0.1f, 0f);
+            movements.Add(EMovement.Up);
         }
         if (Input.GetKey("down") || Input.GetKey("s"))
         {
-            newPose -= new Vector3(0f, 0.1f, 0f);
+            movements.Add(EMovement.Down);
         }
         if (Input.GetKey("left") || Input.GetKey("a"))
         {
-            newPose -= new Vector3(0.1f, 0f, 0f);
+            movements.Add(EMovement.Left);
         }
         if (Input.GetKey("right") || Input.GetKey("d"))
         {
-            newPose += new Vector3(0.1f, 0f, 0f);
+            movements.Add(EMovement.Right);
         }
 
+        transform.position = NewPoseWithinCamera(movements);
+    }
 
-        Vector3 screenPoint = Camera.main.WorldToViewportPoint(newPose);
-        bool onScreen = screenPoint.z > 0 && screenPoint.x > 0 && screenPoint.x < 1 && screenPoint.y > 0 && screenPoint.y < 1;
+    private Vector3 NewPoseWithinCamera(List<EMovement> movements)
+    {
+        Vector3 translation = Vector3.zero;
+        Vector3 screenPoint;
 
-        if (onScreen)
+        foreach (EMovement move in movements)
         {
-            transform.position = newPose;
+            switch (move)
+            {
+                case (EMovement.Right):
+                    screenPoint = Camera.main.WorldToViewportPoint(transform.position + new Vector3(_displacement, 0f, 0f));
+                    if (screenPoint.x < 1)
+                    {
+                        translation.x += _displacement;
+                    }
+                    break;
+
+                case (EMovement.Left):
+                    screenPoint = Camera.main.WorldToViewportPoint(transform.position - new Vector3(_displacement, 0f, 0f));
+                    if (screenPoint.x > 0)
+                    {
+                        translation.x -= _displacement;
+                    }
+                    break;
+
+                case (EMovement.Up):
+                    screenPoint = Camera.main.WorldToViewportPoint(transform.position + new Vector3(0f, _displacement, 0f));
+                    if (screenPoint.y < 1)
+                    {
+                        translation.y += _displacement;
+                    }
+                    break;
+
+                case (EMovement.Down):
+                    screenPoint = Camera.main.WorldToViewportPoint(transform.position - new Vector3(0f, _displacement, 0f));
+                    if (screenPoint.y > 0)
+                    {
+                        translation.y -= _displacement;
+                    }
+                    break;
+            }
         }
+        translation = translation.normalized * _displacement;
+        return transform.position + translation;
     }
 }
