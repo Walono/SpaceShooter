@@ -139,7 +139,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 849f0a89f3bf4c745b60e281336ec734, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MunSpeed: 0.7
+  MunSpeed: 0.1
   MaxRange: 12
   InitialPose: {x: 0, y: 0, z: 0}
 --- !u!1 &2201681234284481340
