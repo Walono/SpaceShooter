@@ -327,6 +327,8 @@ GameObject:
   - component: {fileID: 1556828580}
   - component: {fileID: 1556828579}
   - component: {fileID: 1556828581}
+  - component: {fileID: 1556828582}
+  - component: {fileID: 1556828583}
   m_Layer: 0
   m_Name: SpaceShip
   m_TagString: Untagged
@@ -374,3 +376,30 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.2, y: 1.2, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1556828582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1556828578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65cde57dd06063742a9bcb3dea21e339, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  munitionManager: {fileID: 1556828583}
+--- !u!114 &1556828583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1556828578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f26eb9dde8316d441a14293fe3dba67a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  YellowMunPrefab: {fileID: 2201681233991516610, guid: d805a8f30fcc3f94ba5d592c05346036,
+    type: 3}
