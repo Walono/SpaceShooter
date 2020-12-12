@@ -7,9 +7,10 @@ public class MunitionManagement : MonoBehaviour
     [SerializeField]
     public GameObject YellowMunPrefab;
 
+    // TODO: Add prefab for red munition.
+
     private GameObject _currentMunType;
     private float _shootCooldown;
-    private float _maxRange;
 
     private bool _canShoot = true;
     private float _timer = 0;
@@ -42,9 +43,14 @@ public class MunitionManagement : MonoBehaviour
         }
     }
 
-    private void SetYellowMun()
+    public void SetYellowMun()
     {
         _currentMunType = YellowMunPrefab;
         _shootCooldown = 0.2f;
+    }
+
+    public void SetRedMun()
+    {
+        // TODO: Set parameters for red munitions.
     }
 }
