@@ -2,15 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RedMunitions : MonoBehaviour
+public class RedMunitions : Munitions
 {
     private void Awake()
     {
-        // TODO : Initialize red munition.
+        InitialPose = transform.position;
     }
 
     private void Update()
     {
-        // TODO : Implement it's life cycle.
+        transform.position += new Vector3(0f, MunSpeed, 0f);
+
+        if (transform.position.y - InitialPose.y >= MaxRange)
+        {
+            Destroy(gameObject);
+        }
     }
-}
+}//copied YellowMunitions and changed heritage to Munitions
