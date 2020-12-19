@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public enum EMovement
@@ -12,8 +11,6 @@ public enum EMovement
 
 public class Movements : MonoBehaviour
 {
- 
-
     private float _moveSpeed = 0.1f;
     private Collider _collider;
 

@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class MunitionBoxLife : MonoBehaviour
@@ -11,7 +10,6 @@ public class MunitionBoxLife : MonoBehaviour
     private List<EMovement> _currentMovement = new List<EMovement>();
     private float _moveSpeed = 0.07f;
     private BoxCollider _collider;
-
 
     private void OnTriggerEnter(Collider collision)
     {
@@ -28,8 +26,6 @@ public class MunitionBoxLife : MonoBehaviour
         _currentMovement.Add(EMovement.Up);
         _currentMovement.Add(EMovement.Left);
         _collider = gameObject.GetComponent<BoxCollider>();
-
-
     }
 
     private void Start()
@@ -48,9 +44,6 @@ public class MunitionBoxLife : MonoBehaviour
     {
         transform.position = MoveWithinCamera(_currentMovement);
     }
-
-
-
 
     private Vector3 MoveWithinCamera(List<EMovement> movements)
     {
@@ -117,7 +110,6 @@ public class MunitionBoxLife : MonoBehaviour
                     }
                     break;
             }
-
         }
 
         _currentMovement = changeList;
@@ -127,14 +119,16 @@ public class MunitionBoxLife : MonoBehaviour
 
     private void ChangeMunitionType()
     {
-        switch(BoxType)
+        switch (BoxType)
         {
             case EBoxType.yellowBox:
                 MunitionManagement.Instance.SetYellowMun();
                 break;
+
             case EBoxType.redBox:
                 MunitionManagement.Instance.SetRedMun();
                 break;
+
             case EBoxType.blueBox:
                 MunitionManagement.Instance.SetBluewMun();
                 break;

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public enum EBoxType
 {
@@ -13,6 +11,7 @@ public class MunitionBoxManager : MonoBehaviour
 {
     [SerializeField]
     private MunitionManagement _munManager;
+
     [SerializeField]
     private BoxCollider _shipCollider;
 
@@ -20,23 +19,23 @@ public class MunitionBoxManager : MonoBehaviour
     private Material[] _boxMaterial;
 
     private EBoxType nextBox;
-    private float _boxTimer  = 7f;
+    private float _boxTimer = 7f;
     private float _spawnTime;
     private bool _canSpawn = true;
 
     private GameObject _currentCube = null;
     private BoxCollider _cubeCollider;
 
-    void Start()
+    private void Start()
     {
         nextBox = EBoxType.redBox;
         _spawnTime = Time.time + _boxTimer;
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        if(_canSpawn && Time.time > _spawnTime)
+        if (_canSpawn && Time.time > _spawnTime)
         {
             _canSpawn = false;
             CreateACube(_boxMaterial[(int)nextBox], nextBox);
