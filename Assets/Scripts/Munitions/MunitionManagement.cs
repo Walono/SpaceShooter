@@ -64,12 +64,16 @@ public class MunitionManagement : MonoBehaviour
     {
         _currentMunType = YellowMunPrefab;
         _shootCooldown = 0.2f;
+        _canShoot = true;
+        _timer = 0f;
     }
 
     public void SetRedMun()
     {
         _currentMunType = RedMunPrefab;
         _shootCooldown = 0.2f;
+        _canShoot = true;
+        _timer = 0f;
         // Set parameters for red munitions.
     }
 
@@ -77,5 +81,7 @@ public class MunitionManagement : MonoBehaviour
     {
         _currentMunType = BlueMunPrefab;
         _shootCooldown = 1.2f;
+        _canShoot = true;
+        _timer = 0f;
     }
 }
