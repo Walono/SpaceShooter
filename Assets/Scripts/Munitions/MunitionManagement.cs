@@ -15,9 +15,26 @@ public class MunitionManagement : MonoBehaviour
     private bool _canShoot = true;
     private float _timer = 0;
 
+
+    private static MunitionManagement _instance;
+    public static MunitionManagement Instance { get { return _instance; } }
+
+
+    private void Awake()
+    {
+        if (_instance != null && _instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            _instance = this;
+        }
+    }
+
     private void Start()
     {
-        SetRedMun();
+        SetYellowMun();
     }
 
     // Update is called once per frame
