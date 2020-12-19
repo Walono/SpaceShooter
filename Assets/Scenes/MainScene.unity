@@ -407,6 +407,8 @@ MonoBehaviour:
     type: 3}
   RedMunPrefab: {fileID: 6936309631979054182, guid: 294e991bf3860ab4eab222c0735ce414,
     type: 3}
+  BlueMunPrefab: {fileID: 7688532088500083380, guid: 6b4a3cd5a93e2f34dabdecd28801649d,
+    type: 3}
 --- !u!114 &1556828584
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -421,8 +423,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _munManager: {fileID: 1556828583}
   _shipCollider: {fileID: 1556828581}
-  _yellowMaterial: {fileID: 2100000, guid: 06a3392ab6a41f34882ea05e7fb64a15, type: 2}
-  _redMaterial: {fileID: 2100000, guid: 8296bf105f2a84c458d349a4eb90f58d, type: 2}
+  _boxMaterial:
+  - {fileID: 2100000, guid: 06a3392ab6a41f34882ea05e7fb64a15, type: 2}
+  - {fileID: 2100000, guid: 8296bf105f2a84c458d349a4eb90f58d, type: 2}
+  - {fileID: 2100000, guid: d9c1f81fc19fb734cbf55f56f0076a9a, type: 2}
 --- !u!54 &1556828585
 Rigidbody:
   m_ObjectHideFlags: 0

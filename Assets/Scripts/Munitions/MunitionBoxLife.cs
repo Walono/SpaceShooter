@@ -15,7 +15,6 @@ public class MunitionBoxLife : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
-        Debug.Log(collision.gameObject.name);
         if (collision.gameObject.name == ShipObject.name)
         {
             ChangeMunitionType();
@@ -136,7 +135,9 @@ public class MunitionBoxLife : MonoBehaviour
             case EBoxType.redBox:
                 MunitionManagement.Instance.SetRedMun();
                 break;
+            case EBoxType.blueBox:
+                MunitionManagement.Instance.SetBluewMun();
+                break;
         }
-
     }
 }

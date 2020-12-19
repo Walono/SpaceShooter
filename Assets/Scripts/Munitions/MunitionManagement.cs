@@ -6,8 +6,12 @@ public class MunitionManagement : MonoBehaviour
 {
     [SerializeField]
     public GameObject YellowMunPrefab;
-    public GameObject RedMunPrefab;  //add red prefab
-    
+
+    [SerializeField]
+    public GameObject RedMunPrefab;
+
+    [SerializeField]
+    public GameObject BlueMunPrefab;
 
     private GameObject _currentMunType;
     private float _shootCooldown;
@@ -15,10 +19,8 @@ public class MunitionManagement : MonoBehaviour
     private bool _canShoot = true;
     private float _timer = 0;
 
-
     private static MunitionManagement _instance;
     public static MunitionManagement Instance { get { return _instance; } }
-
 
     private void Awake()
     {
@@ -71,5 +73,11 @@ public class MunitionManagement : MonoBehaviour
         _currentMunType = RedMunPrefab;
         _shootCooldown = 0.2f;
         // Set parameters for red munitions.
+    }
+
+    public void SetBluewMun()
+    {
+        _currentMunType = BlueMunPrefab;
+        _shootCooldown = 1.2f;
     }
 }

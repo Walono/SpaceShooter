@@ -5,22 +5,19 @@ using UnityEngine;
 public enum EBoxType
 {
     yellowBox = 0,
-    redBox = 1
+    redBox = 1,
+    blueBox = 2
 }
 
 public class MunitionBoxManager : MonoBehaviour
 {
-    private const int _nbrTotalBox = 2;
-
     [SerializeField]
     private MunitionManagement _munManager;
     [SerializeField]
     private BoxCollider _shipCollider;
 
     [SerializeField]
-    private Material _yellowMaterial;
-    [SerializeField]
-    private Material _redMaterial;
+    private Material[] _boxMaterial;
 
     private EBoxType nextBox;
     private float _boxTimer  = 7f;
@@ -42,31 +39,10 @@ public class MunitionBoxManager : MonoBehaviour
         if(_canSpawn && Time.time > _spawnTime)
         {
             _canSpawn = false;
-            switch(nextBox)
-            {
-                case EBoxType.yellowBox:
-                    SpawnYellowCube();
-                    break;
-                case EBoxType.redBox:
-                    SpawnRedCube();
-                    break;
-                default:
-                    break;
-            }
-            nextBox = (EBoxType)(((int)nextBox + 1) % _nbrTotalBox);
+            CreateACube(_boxMaterial[(int)nextBox], nextBox);
+            nextBox = (EBoxType)(((int)nextBox + 1) % _boxMaterial.Length);
         }
     }
-
-
-    private void SpawnRedCube()
-    {
-        CreateACube(_redMaterial, EBoxType.redBox);
-    }
-        private void SpawnYellowCube()
-    {
-        CreateACube(_yellowMaterial, EBoxType.yellowBox);
-    }
-
 
     private void CreateACube(Material colorMat, EBoxType boxType)
     {
