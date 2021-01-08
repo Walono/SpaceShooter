@@ -1,6 +1,8 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-public class YellowMunitions : Munitions
+public class RedMunitions : Munitions
 {
     private void Awake()
     {
@@ -16,4 +18,4 @@ public class YellowMunitions : Munitions
             Destroy(gameObject);
         }
     }
-}
+}//copied YellowMunitions and changed heritage to Munitions

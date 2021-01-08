@@ -1,18 +1,36 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class MunitionManagement : MonoBehaviour
 {
     [SerializeField]
     public GameObject YellowMunPrefab;
 
+    [SerializeField]
+    public GameObject RedMunPrefab;
+
+    [SerializeField]
+    public GameObject BlueMunPrefab;
+
     private GameObject _currentMunType;
     private float _shootCooldown;
-    private float _maxRange;
 
     private bool _canShoot = true;
     private float _timer = 0;
+
+    private static MunitionManagement _instance;
+    public static MunitionManagement Instance { get { return _instance; } }
+
+    private void Awake()
+    {
+        if (_instance != null && _instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            _instance = this;
+        }
+    }
 
     private void Start()
     {
@@ -42,9 +60,28 @@ public class MunitionManagement : MonoBehaviour
         }
     }
 
-    private void SetYellowMun()
+    public void SetYellowMun()
     {
         _currentMunType = YellowMunPrefab;
-        _shootCooldown = 0.3f;
+        _shootCooldown = 0.2f;
+        _canShoot = true;
+        _timer = 0f;
+    }
+
+    public void SetRedMun()
+    {
+        _currentMunType = RedMunPrefab;
+        _shootCooldown = 0.2f;
+        _canShoot = true;
+        _timer = 0f;
+        // Set parameters for red munitions.
+    }
+
+    public void SetBluewMun()
+    {
+        _currentMunType = BlueMunPrefab;
+        _shootCooldown = 1.2f;
+        _canShoot = true;
+        _timer = 0f;
     }
 }

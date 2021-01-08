@@ -1,17 +1,16 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
+
+public enum EMovement
+{
+    Up,
+    Down,
+    Left,
+    Right
+}
 
 public class Movements : MonoBehaviour
 {
-    private enum EMovement
-    {
-        Up,
-        Down,
-        Left,
-        Right
-    }
-
     private float _moveSpeed = 0.1f;
     private Collider _collider;
 
