@@ -13,6 +13,10 @@ public class MunitionBoxLife : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
+        if (ShipObject == null)
+        {
+            return;
+        }
         if (collision.gameObject.name == ShipObject.name)
         {
             ChangeMunitionType();
