@@ -2,6 +2,8 @@
 
 public class YellowMunitions : Munitions
 {
+    private const int _subMunitionPower = 10;
+
     private void Awake()
     {
         InitialPose = transform.position;
@@ -15,5 +17,10 @@ public class YellowMunitions : Munitions
         {
             Destroy(gameObject);
         }
+    }
+
+    public override int GetMunPower(int subMunitionIndex)
+    {
+        return _subMunitionPower;
     }
 }

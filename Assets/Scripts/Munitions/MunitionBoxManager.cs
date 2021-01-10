@@ -47,9 +47,6 @@ public class MunitionBoxManager : MonoBehaviour
     {
         _currentCube = GameObject.CreatePrimitive(PrimitiveType.Cube);
         _currentCube.transform.localScale = new Vector3(1f, 1f, 1f);
-        _cubeCollider = _currentCube.AddComponent<BoxCollider>();
-        _cubeCollider.size = new Vector3(1.2f, 1.2f, 1.2f);
-        _cubeCollider.isTrigger = true;
         _currentCube.GetComponent<Renderer>().material = colorMat;
         MunitionBoxLife boxLife = _currentCube.AddComponent<MunitionBoxLife>();
         boxLife.BoxType = boxType;

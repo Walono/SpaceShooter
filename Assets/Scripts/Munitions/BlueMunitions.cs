@@ -16,6 +16,19 @@ public class BlueMunitions : Munitions
     private float _angle = 0;
     private float _sideMove = .04f;
 
+    private const int mainSideSphere = 10;
+    private const int smallSideSphere = 5;
+    private const int mainMidSphere = 20;
+    private const int smallMidSphere = 15;
+
+    private enum ELaserIndex
+    {
+        mainSideSphere = 0,
+        smallSideSphere = 1,
+        mainMidSphere = 2,
+        smallMidSphere = 3
+    }
+
     private void Awake()
     {
         InitialPose = transform.position;
@@ -41,5 +54,26 @@ public class BlueMunitions : Munitions
         _leftOrb.transform.localRotation = Quaternion.Euler(rotateOrb);
         _rightOrb.transform.localPosition += rightPose;
         _rightOrb.transform.localRotation = Quaternion.Euler(rotateOrb);
+    }
+
+    public override int GetMunPower(int subMunitionIndex)
+    {
+        if (subMunitionIndex == (int)ELaserIndex.mainSideSphere)
+        {
+            return mainSideSphere;
+        }
+        else if (subMunitionIndex == (int)ELaserIndex.smallSideSphere)
+        {
+            return smallSideSphere;
+        }
+        else if (subMunitionIndex == (int)ELaserIndex.mainMidSphere)
+        {
+            return mainMidSphere;
+        }
+        else if (subMunitionIndex == (int)ELaserIndex.smallMidSphere)
+        {
+            return smallMidSphere;
+        }
+        return 0;
     }
 }
