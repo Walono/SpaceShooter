@@ -9,11 +9,13 @@ public class ShipManagement : MonoBehaviour
     private int _life = 1;
 
     private bool _isInvulnerable = false;
+    private float _invulDuration = 2f;
+    private float _invulEndTime;
 
     [SerializeField]
     private MunitionManagement munitionManager;
 
-    private float shootCooldown;
+    private float _shootCooldown;
 
     [SerializeField]
     private SwapScene _sceneSwaper;
@@ -28,6 +30,9 @@ public class ShipManagement : MonoBehaviour
         {
             _instance = this;
         }
+        if (_isInvulnerable)
+        {
+        }
     }
 
     private void Update()
@@ -35,6 +40,11 @@ public class ShipManagement : MonoBehaviour
         if (Input.GetKey("space"))
         {
             munitionManager.Fire();
+        }
+
+        if (_isInvulnerable && Time.time > _invulEndTime)
+        {
+            _isInvulnerable = false;
         }
     }
 
@@ -44,7 +54,8 @@ public class ShipManagement : MonoBehaviour
         {
             return;
         }
-
+        _isInvulnerable = true;
+        _invulEndTime = Time.time + _invulDuration;
         _life--;
 
         if (_life == 0)
