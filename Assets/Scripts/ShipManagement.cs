@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class ShipManagement : MonoBehaviour
 {
@@ -28,6 +29,9 @@ public class ShipManagement : MonoBehaviour
     private int _swapAlpha = 0;
     private const int _swapFrames = 5;
 
+    [SerializeField]
+    private Text _lifeTextUI;
+
     private void Awake()
     {
         if (_instance != null && _instance != this)
@@ -39,6 +43,8 @@ public class ShipManagement : MonoBehaviour
             _instance = this;
         }
         _initialColor = _spaceShipRenderer.color;
+
+        _lifeTextUI.text = "x" + _life.ToString();
     }
 
     private void Update()
@@ -75,6 +81,7 @@ public class ShipManagement : MonoBehaviour
         _isInvulnerable = true;
         _invulEndTime = Time.time + _invulDuration;
         _life--;
+        _lifeTextUI.text = "x" + _life.ToString();
 
         if (_life == 0)
         {
