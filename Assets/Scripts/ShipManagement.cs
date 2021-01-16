@@ -6,9 +6,17 @@ public class ShipManagement : MonoBehaviour
     public static ShipManagement Instance { get { return _instance; } }
 
     [SerializeField]
+    private int _life = 1;
+
+    private bool _isInvulnerable = false;
+
+    [SerializeField]
     private MunitionManagement munitionManager;
 
     private float shootCooldown;
+
+    [SerializeField]
+    private SwapScene _sceneSwaper;
 
     private void Awake()
     {
@@ -28,5 +36,26 @@ public class ShipManagement : MonoBehaviour
         {
             munitionManager.Fire();
         }
+    }
+
+    public void HitSpaceShip()
+    {
+        if (_isInvulnerable)
+        {
+            return;
+        }
+
+        _life--;
+
+        if (_life == 0)
+        {
+            Explode();
+        }
+    }
+
+    private void Explode()
+    {
+        Destroy(gameObject);
+        _sceneSwaper.SwapToScene("GameOver");
     }
 }

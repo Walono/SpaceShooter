@@ -11,7 +11,7 @@ public class InvaderLife : MonoBehaviour
     {
         if (collision.gameObject.name == "SpaceShip")
         {
-            Destroy(collision.gameObject);
+            collision.gameObject.GetComponent<ShipManagement>().HitSpaceShip();
         }
 
         Munitions munType = collision.gameObject.GetComponentInParent<Munitions>();
