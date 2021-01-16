@@ -529,9 +529,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65cde57dd06063742a9bcb3dea21e339, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _life: 1
+  _life: 3
   munitionManager: {fileID: 1556828583}
   _sceneSwaper: {fileID: 1556828586}
+  _spaceShipRenderer: {fileID: 493229122}
 --- !u!114 &1556828583
 MonoBehaviour:
   m_ObjectHideFlags: 0

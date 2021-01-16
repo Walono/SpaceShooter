@@ -7,7 +7,7 @@ public class InvaderLife : MonoBehaviour
     [SerializeField]
     private float _health;
 
-    private void OnTriggerEnter(Collider collision)
+    private void OnTriggerStay(Collider collision)
     {
         if (collision.gameObject.name == "SpaceShip")
         {

@@ -9,7 +9,7 @@ public class ShipManagement : MonoBehaviour
     private int _life = 1;
 
     private bool _isInvulnerable = false;
-    private float _invulDuration = 2f;
+    private float _invulDuration = 1f;
     private float _invulEndTime;
 
     [SerializeField]
@@ -19,6 +19,14 @@ public class ShipManagement : MonoBehaviour
 
     [SerializeField]
     private SwapScene _sceneSwaper;
+
+    [SerializeField]
+    private SpriteRenderer _spaceShipRenderer;
+
+    private Color _initialColor;
+
+    private int _swapAlpha = 0;
+    private const int _swapFrames = 5;
 
     private void Awake()
     {
@@ -30,9 +38,7 @@ public class ShipManagement : MonoBehaviour
         {
             _instance = this;
         }
-        if (_isInvulnerable)
-        {
-        }
+        _initialColor = _spaceShipRenderer.color;
     }
 
     private void Update()
@@ -45,6 +51,18 @@ public class ShipManagement : MonoBehaviour
         if (_isInvulnerable && Time.time > _invulEndTime)
         {
             _isInvulnerable = false;
+            _spaceShipRenderer.color = new Color(_initialColor.r, _initialColor.g, _initialColor.b, _initialColor.a);
+        }
+
+        if (_isInvulnerable)
+        {
+            if (_swapAlpha % _swapFrames == 0)
+            {
+                float alpha = _spaceShipRenderer.color.a > 0 ? 0 : 125;
+                _spaceShipRenderer.color = new Color(_initialColor.r, _initialColor.g, _initialColor.b, alpha);
+                _swapAlpha = 0;
+            }
+            _swapAlpha++;
         }
     }
 
